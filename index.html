@@ -2534,57 +2534,6 @@
             display: none !important;
         }
     </style>
-
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, 
-                 signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } 
-        from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
-        import { getFirestore, collection, addDoc, getDocs, query, where, 
-                 deleteDoc, doc, updateDoc, serverTimestamp, orderBy, limit } 
-        from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-
-        // Firebase configuration
-        const firebaseConfig = {
-          apiKey: "AIzaSyCumuUK1krB4TiE7fZaOxD0fuNTNUGKrVs",
-          authDomain: "finance-ai-da771.firebaseapp.com",
-          projectId: "finance-ai-da771",
-          storageBucket: "finance-ai-da771.firebasestorage.app",
-          messagingSenderId: "300753775543",
-          appId: "1:300753775543:web:fd6789aa87ed4bf55d1632",
-          measurementId: "G-DK9WZHR20D"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        // Make Firebase available globally
-        window.firebaseAuth = auth;
-        window.firebaseDb = db;
-        window.firebaseCreateUser = createUserWithEmailAndPassword;
-        window.firebaseSignIn = signInWithEmailAndPassword;
-        window.firebaseSignInWithPopup = signInWithPopup;
-        window.firebaseGoogleProvider = GoogleAuthProvider;
-        window.firebaseSignOut = signOut;
-        window.firebaseOnAuthStateChanged = onAuthStateChanged;
-        window.firebaseCollection = collection;
-        window.firebaseAddDoc = addDoc;
-        window.firebaseGetDocs = getDocs;
-        window.firebaseQuery = query;
-        window.firebaseWhere = where;
-        window.firebaseDeleteDoc = deleteDoc;
-        window.firebaseDoc = doc;
-        window.firebaseUpdateDoc = updateDoc;
-        window.firebaseServerTimestamp = serverTimestamp;
-        window.firebaseOrderBy = orderBy;
-        window.firebaseLimit = limit;
-
-        console.log('Firebase initialized successfully');
-    </script>
-
 </head>
 <body>
     <!-- Landing Page -->
@@ -5559,6 +5508,60 @@
                 }
             }
         });
+    </script>
+
+    <!-- Firebase Integration - Added to Finance AI Fixed v6 -->
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, 
+                 signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } 
+        from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc, getDocs, query, where, 
+                 deleteDoc, doc, updateDoc, serverTimestamp, orderBy, limit } 
+        from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        // Your Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyCumuUK1krB4TiE7fZaOxD0fuNTNUGKrVs",
+          authDomain: "finance-ai-da771.firebaseapp.com",
+          projectId: "finance-ai-da771",
+          storageBucket: "finance-ai-da771.firebasestorage.app",
+          messagingSenderId: "300753775543",
+          appId: "1:300753775543:web:fd6789aa87ed4bf55d1632",
+          measurementId: "G-DK9WZHR20D"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Export Firebase to window object so your existing code can use it
+        window.firebase = {
+            auth: auth,
+            db: db,
+            createUserWithEmailAndPassword: createUserWithEmailAndPassword,
+            signInWithEmailAndPassword: signInWithEmailAndPassword,
+            signInWithPopup: signInWithPopup,
+            GoogleAuthProvider: GoogleAuthProvider,
+            signOut: signOut,
+            onAuthStateChanged: onAuthStateChanged,
+            collection: collection,
+            addDoc: addDoc,
+            getDocs: getDocs,
+            query: query,
+            where: where,
+            deleteDoc: deleteDoc,
+            doc: doc,
+            updateDoc: updateDoc,
+            serverTimestamp: serverTimestamp,
+            orderBy: orderBy,
+            limit: limit
+        };
+
+        console.log('✅ Firebase initialized and ready to use!');
+        console.log('Access Firebase via: window.firebase.auth, window.firebase.db');
     </script>
 </body>
 </html>
